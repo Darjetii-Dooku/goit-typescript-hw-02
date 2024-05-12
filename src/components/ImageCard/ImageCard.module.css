@@ -1,0 +1,22 @@
+.card {
+    width: 300px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05)
+}
+.image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.title {
+    font-size: 18px;
+    text-align: center; 
+    padding: 10px 0;
+    color: #282c34;
+    font-weight: 700;
+    line-height: 1.2;
+    word-wrap: normal;
+    margin: 0 10px 0 10px;
+
+}
