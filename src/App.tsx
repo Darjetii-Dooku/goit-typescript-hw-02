@@ -10,7 +10,7 @@ import { ImageData } from "./App.types";
 
 
 function App() {
-  const [images, setImages] = useState<ImageData[] | null>(null);
+  const [images, setImages] = useState<ImageData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [Iserror, setError] = useState<boolean>(false);
   const [query, setQuerry] = useState<string>("");
