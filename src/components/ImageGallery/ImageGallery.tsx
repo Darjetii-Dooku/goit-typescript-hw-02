@@ -2,7 +2,7 @@ import React from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import Loader from "../Loader/Loader";
 import css from "./ImageGallery.module.css";
-import { ImageGalleryProps } from "./ImageGallery.types";
+import { ImageGalleryProps, Image } from "./ImageGallery.types";
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({
   images,
@@ -12,7 +12,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   return (
     <ul className={css.gallery}>
       {isLoading && <Loader />}
-      {images.map((image) => (
+      {images.map((image: Image) => (
         <li key={image.id} onClick={() => openModal(image)}>
           <ImageCard
             src={image.urls.small}

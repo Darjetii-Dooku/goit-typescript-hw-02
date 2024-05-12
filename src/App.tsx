@@ -7,7 +7,7 @@ import { requestImagesByQuery } from "./services/api";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 
-interface ImageData {
+interface Image {
   id: string;
   urls: {
     small: string;
@@ -17,13 +17,13 @@ interface ImageData {
 }
 
 function App() {
-  const [images, setImages] = useState<ImageData[] | null>(null);
+  const [images, setImages] = useState<Image[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [query, setQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [modalImg, setModalImg] = useState<ImageData | null>(null);
+  const [modalImg, setModalImg] = useState<Image | null>(null);
 
   const onSetQuery = (query: string) => {
     setQuery(query);
@@ -37,9 +37,9 @@ function App() {
       try {
         const data = await requestImagesByQuery(query, page);
         if (page === 1) {
-          setImages(data.results);
+          setImages(data);
         } else {
-          setImages((prevImages) => [...(prevImages || []), ...data.results]);
+          setImages((prevImages) => [...(prevImages || []), ...data]);
         }
       } catch (error) {
         setIsError(true);
@@ -51,8 +51,8 @@ function App() {
     fetchImages();
   }, [query, page]);
 
-  const openModal = (img: ImageData) => {
-    setModalImg(img);
+  const openModal = (image: Image) => {
+    setModalImg(image);
     setModalIsOpen(true);
   };
 
