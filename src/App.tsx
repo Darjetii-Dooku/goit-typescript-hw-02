@@ -29,9 +29,9 @@ function App() {
         setIsLoading(true);
         const data = await requestImagesByQuery(query, page);
         if (page === 1) {
-          setImages(data.results);
+          setImages(data);
         } else {
-          setImages((prevImages) => [...prevImages || [], ...data.results]);
+          setImages((prevImages) => [...prevImages || [], ...data]);
         }
         // setImages(data.results)
       } catch (error) {
