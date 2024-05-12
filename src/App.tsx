@@ -6,19 +6,17 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import { requestImages, requestImagesByQuery } from "./services/api";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
-import { ImageData } from "./App.types";
-
 
 function App() {
-  const [images, setImages] = useState<ImageData | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [Iserror, setError] = useState<boolean>(false);
-  const [query, setQuerry] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [modalImg, setModalImg] = useState<ImageData | null>(null);
+  const [images, setImages] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [Iserror, setError] = useState(false);
+  const [query, setQuerry] = useState("");
+  const [page, setPage] = useState(1);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalImg, setModalImg] = useState(null);
 
-  const onSetQuery = (query: string) => {
+  const onSetQuery = (query) => {
     setQuerry(query);
   };
   useEffect(() => {
@@ -29,9 +27,9 @@ function App() {
         setIsLoading(true);
         const data = await requestImagesByQuery(query, page);
         if (page === 1) {
-          setImages(data);
+          setImages(data.results);
         } else {
-          setImages((prevImages) => [...prevImages || [], ...data]);
+          setImages((prevImages) => [...prevImages, ...data.results]);
         }
         // setImages(data.results)
       } catch (error) {
@@ -42,7 +40,7 @@ function App() {
     }
     fetchImages();
   }, [query, page]);
-  const openModal = (img: ImageData) => {
+  const openModal = (img) => {
     console.dir(img);
     setModalImg(img);
     setModalIsOpen(true);
