@@ -6,9 +6,11 @@ export interface Image {
     };
     alt_description: string;
 }
-
+interface Results {
+    results: Image[]
+}
 export interface ImageGalleryProps {
-    images: Image[];
+    images: Results;
     isLoading: boolean;
     openModal: (image: Image) => void;
 }

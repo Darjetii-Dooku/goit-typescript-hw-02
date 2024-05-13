@@ -12,7 +12,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   return (
     <ul className={css.gallery}>
       {isLoading && <Loader />}
-      {images.map((image: Image) => (
+      {images.results.map((image: Image) => (
         <li key={image.id} onClick={() => openModal(image)}>
           <ImageCard
             src={image.urls.small}
