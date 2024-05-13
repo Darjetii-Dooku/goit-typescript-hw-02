@@ -37,9 +37,9 @@ function App() {
       try {
         const data = await requestImagesByQuery(query, page);
         if (page === 1) {
-          setImages(data);
+          setImages(data.results);
         } else {
-          setImages((prevImages) => [...(prevImages || []), ...data]);
+          setImages((prevImages) => [...(prevImages || []), ...data.results]);
         }
       } catch (error) {
         setIsError(true);

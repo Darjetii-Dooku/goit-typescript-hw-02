@@ -6,3 +6,6 @@ export interface ImageData {
     };
     alt_description: string;
   }
+  interface ImagePromise {
+    results: ImageData[];
+  }
