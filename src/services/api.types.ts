@@ -6,6 +6,6 @@ export interface ImageData {
     };
     alt_description: string;
   }
-  interface ImagePromise {
+ export interface ImagePromise {
     results: ImageData[];
   }
